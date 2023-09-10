@@ -1,7 +1,9 @@
 #include "SingleRelay.h"
 #include <Arduino.h>
 
-SingleRelay::SingleRelay(int relayPin, cobold::actuators::RelayState defaultNormalState)
+using namespace cobold::actuators;
+
+SingleRelay::SingleRelay(int relayPin, RelayState defaultNormalState)
     : pin(relayPin), normalState(defaultNormalState), currentState(defaultNormalState)
 {
     // this->services = services;
