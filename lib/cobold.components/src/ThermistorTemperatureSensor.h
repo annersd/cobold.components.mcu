@@ -2,6 +2,7 @@
 
 #include <Arduino.h>
 #include <Cobold.hpp>
+#include <ITemperatureSensor.h>
 #include <Thermistor.h>
 #include <ThermistorTemperatureSensorOptions.h>
 
