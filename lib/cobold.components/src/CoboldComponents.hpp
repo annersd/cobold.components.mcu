@@ -4,11 +4,13 @@
 
 #include "IActuator.h"
 #include "ISensor.h"
-#include "IRelay.h"
 
 #include "SoftwareTimeline.h"
 #include "NTPSyncTimeline.h"
+
+#include "IRelay.h"
 #include "SingleRelay.h"
 
+#include "ITemperatureSensor.h"
 #include "ThermistorTemperatureSensorOptions.h"
 #include "ThermistorTemperatureSensor.h"
