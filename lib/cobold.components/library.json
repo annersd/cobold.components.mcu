@@ -1,0 +1,31 @@
+{
+	"name": "Cobold Components",
+	"keywords": "ESP",
+	"description": "Components for the Cobold IoT Framework",
+	"version": "1.0.0",
+	"authors": {
+		"name": "Annersd",
+		"url": "https://github.com/annersd",
+		"maintainer": true
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/annersd/cobold.components.mcu"
+	},
+	"homepage": "https://github.com/annersd/cobold.components.mcu/",
+	"frameworks": ["arduino"],
+	"platforms": ["espressif32", "espressif8266"],
+    "license": "MIT",
+    "dependencies": {
+        "Cobold Framework": "https://github.com/annersd/cobold.framework.mcu.git",
+		"arduino-libraries/NTPClient":"^3.2.1",
+		"Thermistor": "https://github.com/xreef/Thermistor_library.git"
+	    },
+	"export": {
+		"include": [
+			"src",
+			"lib"
+		]
+	}
+
+}
