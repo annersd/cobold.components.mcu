@@ -18,6 +18,7 @@ namespace cobold
             ThermistorTemperatureSensorOptions(int pin) : pin(pin){
 
                                                           };
+            ThermistorTemperatureSensorOptions() = default;
             ~ThermistorTemperatureSensorOptions() = default;
 
             int getPin() const
