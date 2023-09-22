@@ -1,10 +1,11 @@
 #include "SingleRelay.h"
+
 #include <Arduino.h>
 
 using namespace cobold::actuators;
 
-SingleRelay::SingleRelay(int relayPin, RelayState defaultNormalState)
-    : pin(relayPin), normalState(defaultNormalState), currentState(defaultNormalState)
+SingleRelay::SingleRelay(cobold::components::AbstractGPIOPin *gpio , RelayState defaultNormalState)
+    : gpio(gpio), normalState(defaultNormalState), currentState(defaultNormalState)
 {
     // this->services = services;
     // logger = services->getService<cobold::Logger>();
@@ -50,13 +51,13 @@ void SingleRelay::update()
 
 void SingleRelay::initialize()
 {
-    pinMode(pin, OUTPUT);
+    gpio->pin_mode(cobold::components::gpio::FLAG_OUTPUT);
     setRelayState(currentState);
 }
 
 void SingleRelay::setRelayState(cobold::actuators::RelayState newState)
 {
     // logger->info("Changing relay state on pin %d to %s", pin, (newState == cobold::actuators::RelayState::CLOSED ? "CLOSED" : "OPENED"));
-    digitalWrite(pin, newState == normalState ? HIGH : LOW);
+    gpio->digital_write(newState == normalState ? HIGH : LOW);
     currentState = newState;
 }

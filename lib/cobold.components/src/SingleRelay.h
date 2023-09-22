@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IRelay.h"
+#include "AbstractGPIO.h"
 
 namespace cobold
 {
@@ -16,11 +17,9 @@ namespace cobold
         {
         private:
             /**
-             * @brief The pin number connected to the relay.
-             * This is the pin number of the Arduino board that is connected to the relay.
-             * The pin number is set during construction and cannot be changed afterwards.
+             * @brief The GPIO pin connected to the relay.
              */
-            int pin;
+            cobold::components::AbstractGPIOPin *gpio;
 
             /**
              * @brief The normal state of the relay (open or closed).
@@ -66,7 +65,7 @@ namespace cobold
              * @param relayPin The pin number connected to the relay.
              * @param defaultNormalState The default normal state of the relay (open or closed).
              */
-            SingleRelay(int relayPin, cobold::actuators::RelayState defaultNormalState = cobold::actuators::RelayState::CLOSED);
+            SingleRelay(cobold::components::AbstractGPIOPin *gpio , cobold::actuators::RelayState defaultNormalState = cobold::actuators::RelayState::CLOSED);
 
             // Methods to control the relay
 
