@@ -65,7 +65,7 @@ namespace cobold
              * @param relayPin The pin number connected to the relay.
              * @param defaultNormalState The default normal state of the relay (open or closed).
              */
-            SingleRelay(cobold::components::AbstractGPIOPin *gpio , cobold::actuators::RelayState defaultNormalState = cobold::actuators::RelayState::CLOSED);
+            SingleRelay(cobold::components::AbstractGPIOPin *gpio, cobold::actuators::RelayState defaultNormalState = cobold::actuators::RelayState::CLOSED);
 
             // Methods to control the relay
 
@@ -109,6 +109,7 @@ namespace cobold
 
             // Update and initialize methods (override from IRelay)
 
+#pragma region IComponent implementation
             /**
              * @brief Update the relay state (no action needed).
              *        This method is called periodically to update the relay state.
@@ -120,6 +121,14 @@ namespace cobold
              *        This method is called during system initialization to prepare the relay for operation.
              */
             void initialize() override;
+
+            void configure() override;
+
+            std::string getName() const override;
+
+            std::string getId() const override;
+
+#pragma endregion IComponent implementation
         };
 
     }

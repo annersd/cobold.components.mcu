@@ -61,3 +61,8 @@ void SingleRelay::setRelayState(cobold::actuators::RelayState newState)
     gpio->digital_write(newState == normalState ? HIGH : LOW);
     currentState = newState;
 }
+
+void SingleRelay::configure() 
+{
+    // Nothing to do here
+}
