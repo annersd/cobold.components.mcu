@@ -66,3 +66,13 @@ void SingleRelay::configure()
 {
     // Nothing to do here
 }
+
+std::string SingleRelay::getId() const
+{
+    return "SingleRelay";
+}
+
+std::string SingleRelay::getName() const
+{
+    return "Single Relay";
+}
