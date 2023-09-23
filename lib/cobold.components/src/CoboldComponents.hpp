@@ -14,8 +14,3 @@
 #include "ITemperatureSensor.h"
 #include "ThermistorTemperatureSensorOptions.h"
 #include "ThermistorTemperatureSensor.h"
-
-#include "AbstractGPIO.h"
-#include "BindableGPIO.h"
-#include "PCF8575_Board.h"
-#include "PCF8575_GPIO.h"
