@@ -9,10 +9,12 @@ namespace cobold::components
     class OnBoardGPIO : public cobold::components::AbstractGPIOPin
     {
     private:
-        uint8_t pin_;
+     
 
     public:
-        OnBoardGPIO(uint8_t pin) : pin_(pin) {}
+        OnBoardGPIO(uint8_t pin)  {
+            pin_number = pin;
+        }
 
         void pin_mode(gpio::Flags flags) override
         {
@@ -21,19 +23,19 @@ namespace cobold::components
             switch (flags)
             {
             case gpio::Flags::FLAG_INPUT:
-                pinMode(pin_, INPUT);
+                pinMode(pin_number, INPUT);
                 break;
             case gpio::Flags::FLAG_OUTPUT:
-                pinMode(pin_, OUTPUT);
+                pinMode(pin_number, OUTPUT);
                 break;
             case gpio::Flags::FLAG_OPEN_DRAIN:
-                pinMode(pin_, OUTPUT_OPEN_DRAIN);
+                pinMode(pin_number, OUTPUT_OPEN_DRAIN);
                 break;
             case gpio::Flags::FLAG_PULLUP:
-                pinMode(pin_, INPUT_PULLUP);
+                pinMode(pin_number, INPUT_PULLUP);
                 break;
             case gpio::Flags::FLAG_PULLDOWN:
-                pinMode(pin_, INPUT_PULLDOWN);
+                pinMode(pin_number, INPUT_PULLDOWN);
                 break;
             default:
                 break;
@@ -41,11 +43,17 @@ namespace cobold::components
         }
         bool digital_read() override
         {
-            return digitalRead(pin_);
+            return digitalRead(pin_number);
         }
         void digital_write(bool value) override
         {
-            digitalWrite(pin_, value);
+            digitalWrite(pin_number, value);
+        }
+
+        void configure_impl() override
+        {
+            this->name_ = "OnBoardGPIO Pin " + std::to_string(pin_number) + "";
+            this->identifier_ = "io.onboard.gpio.pin." + std::to_string(pin_number) + "";
         }
     };
 

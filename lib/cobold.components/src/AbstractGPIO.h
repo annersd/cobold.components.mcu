@@ -1,4 +1,6 @@
 #pragma once
+
+#include "Cobold.hpp"
 #include <cstdint>
 #include <string>
 
@@ -45,12 +47,27 @@ namespace cobold::components
         };
     } // namespace gpio
     
-    class AbstractGPIOPin
+    class AbstractGPIOPin : public Component
     {
     public:
+        uint8_t pin_number;
+
         virtual void pin_mode(gpio::Flags flags) = 0;
         virtual bool digital_read() = 0;
         virtual void digital_write(bool value) = 0;
+
+        virtual void configure_impl() override
+        {
+            
+        }
+
+        virtual void initialize_impl() override
+        {
+        }
+
+        virtual void update_impl() override
+        {
+        }
     };
 
 } // namespace cobold::components

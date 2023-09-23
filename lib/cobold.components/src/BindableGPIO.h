@@ -4,7 +4,7 @@
 
 namespace cobold::components
 {
-    class BindableGPIO
+    class BindableGPIO : public AbstractGPIOPin
     {
     public:
         
@@ -14,6 +14,9 @@ namespace cobold::components
         std::function<void(BindableGPIO*,bool)> digital_write;
 
         // constructor
+        BindableGPIO(uint8_t pin_number) {
+            this->pin_number = pin_number;
+        }
         
         void bind_pin_mode(std::function<void(BindableGPIO*,gpio::Flags)> f) {
             pin_mode = f;
