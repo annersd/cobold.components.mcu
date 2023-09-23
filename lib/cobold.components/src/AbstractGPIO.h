@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Cobold.hpp"
+#include "Component.h"
 #include <cstdint>
 #include <string>
 
