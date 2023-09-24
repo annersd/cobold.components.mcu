@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Cobold.hpp"
 #include <string>
 
 namespace cobold
@@ -7,38 +8,32 @@ namespace cobold
     namespace sensors
     {
 
-        class ThermistorTemperatureSensorOptions
+        class ThermistorTemperatureSensorOptions : public cobold::sys::Options
         {
-        private:
-            /* data */
+        public:
             int pin;
             std::string name;
 
-        public:
-            ThermistorTemperatureSensorOptions(int pin) : pin(pin){
-
-                                                          };
+            ThermistorTemperatureSensorOptions(cobold::configuration::IConfiguration *configuration)
+                : Options(configuration)
+            {
+            }
+            ThermistorTemperatureSensorOptions(int pin) : pin(pin){};
             ThermistorTemperatureSensorOptions() = default;
             ~ThermistorTemperatureSensorOptions() = default;
 
-            int getPin() const
+            void logOptions() override
             {
-                return pin;
+                auto logger = cobold::services::getLogger();
+                logger->debug("ThermistorTemperatureSensorOptions::logOptions()");
+                logger->debug("pin: {%u}", pin);
+                logger->debug("name: {%s}", name.c_str());
             }
 
-            void setPin(int pin)
+            void parseConfiguration(cobold::configuration::IConfiguration *configuration) override
             {
-                this->pin = pin;
-            }
-
-            std::string getName() const
-            {
-                return name;
-            }
-
-            void setName(std::string name)
-            {
-                this->name = name;
+                pin = configuration->getInt("pin");
+                name = configuration->getString("name");
             }
         };
 

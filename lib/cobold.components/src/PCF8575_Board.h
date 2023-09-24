@@ -12,18 +12,24 @@ namespace cobold::components
     private:
         PCF8575 *pcf8575_;
         std::vector<PCF8575_GPIO *> pins_;
+        cobold::Logger *logger;
 
     public:
-        PCF8575_Board(PCF8575 *pcf8575) : pcf8575_(pcf8575) {}
+        PCF8575_Board(PCF8575 *pcf8575) : pcf8575_(pcf8575) {
+            logger = cobold::services::getLogger();
+            logger->debug("PCF8575_Board::PCF8575_Board()");
+        }
 
         void configure_impl() override
         {
+            logger->debug("PCF8575_Board::configure()");
             this->name_ = "PCF8575_Board";
             this->identifier_ = "io.pcf8575.board";
         }
 
         void initialize_impl() override
         {
+            logger->debug("PCF8575_Board::initialize()");
             pcf8575_->begin();
         }
 
